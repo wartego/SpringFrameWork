@@ -2,10 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
 
     <bean id="myMessage" class="pl.sda.Message">
@@ -32,15 +33,53 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
         <property name="text" value="Hello WORLDS!!!" />
     </bean>
 
-    <bean id="Author1" class="pl.sda.Author"
+    <bean id="AuthorBook" class="pl.sda.Author"
           p:firstName="Adam" p:lastName="Kopania" />
-    <bean id="Author2" class="pl.sda.Author"
-          p:firstName="Karol" p:lastName="Walas" />
+
 
     <bean id="Potop" class="pl.sda.Book"
-          p:name="Potop" p:author-ref="Author1" />
-    <bean id="Dziady" class="pl.sda.Book"
-          p:name="Dziady" p:author-ref="Author2" />
+          p:name="Potop" p:author-ref="AuthorBook" />
+
+
+
+    <bean id="person1" class="pl.sda.Person">
+        <constructor-arg ref="address1" />
+        <property name="firstName" value="Marek" />
+        <property name="lastName" value="Kowalski" />
+    </bean>
+
+    <bean id="address1" class="pl.sda.Address">
+        <property name="city" value="Wawa" />
+        <property name="postalCode" value="00-999" />
+    </bean>
+
+    <util:list id="myListInteger" value-type="java.lang.Integer" >
+        <value>1</value>
+        <value>2</value>
+        <value>3</value>
+    </util:list>
+
+    <util:list id="myListString" value-type="java.lang.String">
+        <value>Czesc</value>
+        <value>Wartosc</value>
+        <value>Kot</value>
+    </util:list>
+
+    <util:set id="mySet" value-type="java.lang.Integer">
+        <value>1</value>
+        <value>3</value>
+        <value>5</value>
+        <value>1</value>
+    </util:set>
+
+    <util:map id="myMap" key-type="java.lang.String" value-type="java.lang.String">
+        <entry key="key1" value="wartosc1"/>
+        <entry key="key2" value="wartosc2"/>
+    </util:map>
+
+    <bean id="myDate" class="java.util.Date"/>
+
+
 
 
 

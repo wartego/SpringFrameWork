@@ -4,6 +4,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -31,6 +33,20 @@ public class Main {
         myMessage3.setText("nowy");
         Message myMessage4 = context.getBean("myMessage3", Message.class);
         System.out.println(myMessage4.getText());
+
+        Book book =context.getBean("Potop", Book.class);
+        System.out.println(book.getName() + " -> " +book.getAuthor());
+
+        Person person = context.getBean(Person.class);
+        System.out.println(person.getAddress().getCity());
+
+        List myListInteger = context.getBean("myListInteger", List.class);
+        System.out.println(myListInteger);
+
+        List myListString = context.getBean("myListString", List.class);
+        System.out.println(myListString);
+
+        System.out.println(context.getBean("myDate", Date.class));
 
     }
 }
