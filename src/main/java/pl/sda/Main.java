@@ -17,14 +17,20 @@ public class Main {
         ExtraMessage extraMessage = context.getBean("myExtraMessage", ExtraMessage.class);
         System.out.println(extraMessage.getText());
 
-        message.setText("zmiana tekstu");
-        System.out.println(message.getText());
-
         Message myMessage = context.getBean("myMessage", Message.class);
 
         System.out.println(Arrays.toString(context.getBeanDefinitionNames())); // wypisuje wszystkie beany
 
+        message.setText("zmiana tekstu");
+        Message message1 = context.getBean("myMessage", Message.class);
+        System.out.println(message1.getText());
 
+
+        //prototype
+        Message myMessage3 = context.getBean("myMessage3", Message.class);
+        myMessage3.setText("nowy");
+        Message myMessage4 = context.getBean("myMessage3", Message.class);
+        System.out.println(myMessage4.getText());
 
     }
 }
